@@ -66,7 +66,7 @@ app.get('/1', async (req, res) => {
 })
 
 
-app.get('/post/0', async (req, res) => {
+app.post('/post/0', async (req, res) => {
   if (req.body.name || req.body.alias) {
     if (req.body.content) {
       const content = string2utf8(req.body.content)
