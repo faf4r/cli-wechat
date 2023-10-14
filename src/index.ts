@@ -10,6 +10,9 @@ import { string2utf8 } from './utils/string2utf8.ts'
 
 const app = express()
 
+app.use(express.json())  // for parsing application/json
+app.use(express.urlencoded({ extended: false }))  // for parsing application/x-www-form-urlencoded
+
 const bot = WechatyBuilder.build({
   name: 'test-bot',
   puppet: 'wechaty-puppet-wechat',
