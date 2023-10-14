@@ -65,4 +65,40 @@ app.get('/1', async (req, res) => {
   }
 })
 
+
+app.get('/post/0', async (req, res) => {
+  if (req.body.name || req.body.alias) {
+    if (req.body.content) {
+      const content = string2utf8(req.body.content)
+      const name = string2utf8(req.body.name)
+      const alias = string2utf8(req.body.alias)
+      await sendContactMsg(bot, content, alias, name)
+      res.send({'success': 'true','msg':'联系人消息成功'})
+    }
+    else {
+      res.send({'success': 'false','msg':'缺少发送内容'})
+    }
+  }
+  else {
+    res.send({'success': 'false','msg':'缺少用户名/备注'})
+  }
+})
+
+app.post('/post/1', async (req, res) => {
+  if (req.body.name) {
+    if (req.body.content) {
+      const content = string2utf8(req.body.content)
+      const name = string2utf8(req.body.name)
+      await sendRoomMsg(bot, content, name)
+      res.send({'success': 'true','msg':'群消息发送成功'})
+    }
+    else {
+      res.send({'success': 'false','msg':'缺少发送内容'})
+    }
+  }
+  else {
+    res.send({'success': 'false','msg':'缺少群名'})
+  }
+})
+
 app.listen(3000)
