@@ -22,6 +22,11 @@
 npm install -g pnpm
 ```
 
+### 在ubuntu部署时还需安装
+```bash
+apt install libxkbcommon-dev libgbm-dev -y
+```
+
 ## 🚀 Development
 ```bash
 # install dependencies
