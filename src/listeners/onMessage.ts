@@ -1,6 +1,7 @@
 import { log } from 'wechaty'
 import type { Message, Room } from 'wechaty'
 import { robotConfig } from '../configs/robot.ts'
+import { messageHandle } from '../services/messageResponder.ts'
 
 const startTime = new Date()
 export async function onMessage(msg: Message) {
@@ -80,6 +81,7 @@ async function dispatchRoomTextMsg(msg: Message, room: Room) {
 
   const name = alias ? `${contact.name()}(${alias})` : contact.name()
   log.info(`群【${topic}】【${name}】 发送了：${content}`)
+  messageHandle(content, room)
 }
 
 /**
