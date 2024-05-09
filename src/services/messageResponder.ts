@@ -2,8 +2,8 @@ import os from 'node:os'
 import type { Room } from 'wechaty'
 
 async function state(room: Room) {
-  const mem = os.freemem() / os.totalmem()
-  await room.say(`cpu: ${os.cpus()}\nmem: ${mem}\nloadavg: ${os.loadavg()}\nuptime: ${os.uptime()}`)
+  const mem = (100 - os.freemem() / os.totalmem() * 100).toPrecision(4)
+  await room.say(`mem used: ${mem}%\nloadavg: ${os.loadavg()}`)
 }
 
 async function act_for(msg: string, room: Room) {
@@ -26,7 +26,7 @@ export async function messageHandle(msg: string, room: Room) {
       break
     }
     case 'ding': {
-      await room.say('pong!')
+      await room.say('dong!')
       break
     }
     case '/state': {

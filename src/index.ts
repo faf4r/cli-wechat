@@ -7,6 +7,7 @@ import { onMessage } from './listeners/onMessage.ts'
 import { onReady } from './listeners/onReady.ts'
 import { sendContactMsg, sendRoomMsg } from './services/sendMessage.ts'
 import { string2utf8 } from './utils/string2utf8.ts'
+import { news_loop } from './services/newsReminder.ts'
 
 const app = express()
 
@@ -105,3 +106,5 @@ app.post('/post/1', async (req, res) => {
 })
 
 app.listen(3000)
+
+await news_loop(bot)
